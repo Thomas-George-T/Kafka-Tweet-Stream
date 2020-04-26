@@ -2,7 +2,7 @@
 
 Twitter Streaming using a Kafka 2.12 producer using safe, idempotence and compression configurations resulting in a high throughput producer.
 
-This project aims at streaming Tweets using Kafka. The variable `terms` can be updated to stream tweets about Current affairs, in this example, I'm using `coronavirus,covid-19`. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
+This project aims at streaming Tweets using a high throughput Kafka Producer. The variable `terms` can be updated to stream tweets about Current affairs, in this example, I'm using `coronavirus,covid-19`. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
 
 ```java
 static String consumerKey= "";

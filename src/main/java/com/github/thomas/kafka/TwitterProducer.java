@@ -15,6 +15,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
@@ -34,6 +35,20 @@ public class TwitterProducer {
     }
 
     public void run() {
+
+        // test to see if config.java exists
+        File file = new File("src/main/java/com/github/thomas/kafka/config.java");
+        boolean exists = file.exists();
+        if (exists)
+        {
+            logger.info("config.java exists");
+        }
+        else
+        {
+            logger.error("config.java file not found!");
+            logger.error("Exiting: Please create a config.java file to continue");
+            System.exit(0);
+        }
 
         logger.info("Setup");
         /* Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
@@ -69,7 +84,7 @@ public class TwitterProducer {
             }
             if( msg != null){
                 logger.info(msg);
-                producer.send(new ProducerRecord<>("twitter_feed", null, msg), new Callback() {
+                producer.send(new ProducerRecord<>("TwitterTopic", null, msg), new Callback() {
                     @Override
                     public void onCompletion(RecordMetadata recordMetadata, Exception e) {
                         if ( e != null){
@@ -106,8 +121,6 @@ public class TwitterProducer {
 
         Client hosebirdClient = builder.build();
         return hosebirdClient;
-
-
     }
 
     public KafkaProducer<String,String> createKafkaProducer(){
