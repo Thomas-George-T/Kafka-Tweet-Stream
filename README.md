@@ -1,14 +1,20 @@
 # Kafka Twitter Streaming
 
-Twitter Streaming using a Kafka 2.1 producer using safe, idempotence and compression configurations resulting in a high throughput producer.
+Twitter Streaming using a Kafka 2.12 producer using safe, idempotence and compression configurations resulting in a high throughput producer.
 
+This project aims at streaming Tweets using Kafka. The variable `terms` can be updated to stream tweets about Current affairs, in this example, I'm using `coronavirus,covid-19`. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
 
-
+```java
+static String consumerKey= "";
+static String consumerSecret = "";
+static String token = "";
+static String tokenSecret = "";
+```
 
 ## Environment
 - Java JDK 1.8
 - Twitter Developer Account
-- Kafka 2.11
+- Kafka 2.12
 - Zookeeper
 - Windows/Linux
 - Maven
@@ -49,21 +55,27 @@ cd target
 
 ## Execution steps
 
-### To execute the Producer class
+### To execute the TwitterProducer class
 
-1. Run the kafka console consumer in another terminal window with the following `topic` and `group` parameters
+1. Create a `topic` called TwitterTopic. Always have a replication factor equal or lesser than the number of available brokers.
+
+```
+kafka-topics --bootstrap-server localhost:9092 --topic TwitterTopic --create --partitions 3 --replication-factor 1
+```
+
+2. Run the kafka console consumer in another terminal window with the following `topic` and `group` parameters
 
 ```
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic TwitterTopic --group Twitter-Consumer-Group
 ```
 
-2. Execute the TwitterProducer class from the shaded jar
+3. Execute the TwitterProducer class from the shaded jar
 
 ```
 java -cp Kakfa-Streaming-1.0-shaded.jar com.github.thomas.kafka.TwitterProducer
 ```
 
-3. You should now be able to see the output in your Kafka console consumer terminal.
+4. You should now be able to see the output in your Kafka console consumer terminal.
 
 ## License
 
