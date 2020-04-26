@@ -1,0 +1,13 @@
+*.class
+*.classpath
+*.project
+*.settings
+target/
+bin/
+test/
+RemoteSystemsTempFiles/
+*.recommenders
+*.metadata
+*.iml
+*.idea
+**/config.java
