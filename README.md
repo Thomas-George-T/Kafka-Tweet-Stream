@@ -1,4 +1,16 @@
+![GitHub](https://img.shields.io/github/license/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
+
 # Kafka Twitter Streaming
+<br>
+<p align="center">
+	<a href="#">
+		<img src="https://cdn.svgporn.com/logos/kafka.svg" width="300" />
+    <img src="https://cdn.svgporn.com/logos/twitter.svg" width="175" /> 
+	</a>
+</p>
+<br>
 
 Twitter Streaming using a Kafka 2.12 producer using safe, idempotence and compression configurations resulting in a high throughput producer.
 
