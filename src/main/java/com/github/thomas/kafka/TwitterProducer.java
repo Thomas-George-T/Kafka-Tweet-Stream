@@ -112,7 +112,7 @@ public class TwitterProducer {
 
     public KafkaProducer<String,String> createKafkaProducer(){
         String bootStrapServers = "localhost:9092";
-        String topic = "firstTopic";
+        String topic = "TwitterTopic";
 
         // Set Producer config
         Properties properties = new Properties();
