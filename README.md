@@ -1,7 +1,7 @@
-
 ![GitHub](https://img.shields.io/github/license/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
 ![GitHub top language](https://img.shields.io/github/languages/top/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
+
 
 
 
@@ -15,9 +15,8 @@
 </p>
 <br>
 
-Twitter Streaming using a Kafka 2.12 producer using safe, idempotence and compression configurations resulting in a high throughput producer.
-
-This project aims at streaming Tweets using a high throughput Kafka Producer. The variable `terms` can be updated to stream tweets about Current affairs, in this example, I'm using `coronavirus,covid-19`. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
+This project aims at streaming Tweets using a high throughput Kafka Producer. To ensure a high throughput, idempotence, safe and compression configurations are enabled with respect to the Kafka 2.12 version.
+The variable `terms` can be updated to stream tweets about Current affairs, in this example, `coronavirus,covid-19,WHO` are being used. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
 
 ```java
 static String consumerKey= "";
@@ -25,6 +24,8 @@ static String consumerSecret = "";
 static String token = "";
 static String tokenSecret = "";
 ```
+
+To integrate Twitter streaming with Kafka, we use the Horsebird Client which is a Java HTTP client for consuming Twitter's standard streaming API [Learn more](https://github.com/twitter/hbc).
 
 ## Environment
 - Java JDK 1.8
@@ -50,7 +51,7 @@ Command to start Kafka server
 kafka-server-start.sh config/server.properties
 ```
 
-## Installation steps
+## Installation
 
 After cloning this repo,
 
@@ -68,7 +69,7 @@ Maven will now generate a `target` directory with the jar `Kakfa-Streaming-1.0-s
 cd target
 ```
 
-## Execution steps
+## Execution
 
 ### To execute the TwitterProducer class
 
