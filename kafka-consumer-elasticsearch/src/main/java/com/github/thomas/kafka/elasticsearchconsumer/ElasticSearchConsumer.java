@@ -97,6 +97,18 @@ public class ElasticSearchConsumer {
 
         KafkaConsumer<String, String> consumer = createConsumer("TwitterTopic");
 
+        //add a shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.info("Shutdown Hook Called:");
+            logger.info("Shutting down Elasticsearch Client");
+            try {
+                client.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            logger.info("Shutdown completed");
+        }));
+
         while (true) {
             ConsumerRecords<String, String> records =
                     consumer.poll(Duration.ofMillis(100)); // new in Kafka 2.0.0
