@@ -3,8 +3,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
 
 
-
-
 # Kafka Twitter Streaming
 <br>
 <p align="center">
@@ -53,7 +51,8 @@ public class config {
 
 ## Prerequisites 
 
-Add the 
+Add the bin folder location of kafka to the `$PATH` 
+
 Ensure that Zookeeper & Kafka servers are up and running *(Open in separate terminal windows if necessary)*.
 
 Command to start Zookeeper
@@ -68,7 +67,7 @@ Command to start Kafka server
 kafka-server-start.sh config/server.properties
 ```
 
-In this example, we are implementing Elasticsearch on the cloud. [bonsai.io](https://bonsai.io) provides a very good sandbox environment with a 3 node cluster for implementing this. 
+In this example, we are implementing Elasticsearch on the cloud. [bonsai](https://bonsai.io) provides a very good sandbox environment with a 3 node cluster for implementing this. 
 
 > *Personally recommend running Elasticsearch on local machine if and only if free & available RAM >= 5 GB so as to not turn your machine into a room heater*
 
@@ -134,15 +133,18 @@ curl -X PUT "localhost:9200/twitter?pretty"
 java -cp kafka-consumer-elasticsearch-1.0-shaded.jar com.github.thomas.kafka.elasticsearchconsumer.ElasticSearchConsumer
 ```
 
-3. You should now be able to see the output in your Elasticsearch console using GET command.
+3. To view all the tweets in your Elasticsearch console using GET command.
 
 ```
-GET /twitter
+GET /twitter/_search?pretty
 ```
 or 
 ```
-curl -X GET "localhost:9200/twitter?pretty"
+curl -X GET "localhost:9200/twitter/_search?pretty"
 ```
+
+
+![Tweets stored in Elasticsearch](elastisearch.JPG)
 
 ## License
 
