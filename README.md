@@ -133,7 +133,7 @@ curl -X PUT "localhost:9200/twitter?pretty"
 java -cp kafka-consumer-elasticsearch-1.0-shaded.jar com.github.thomas.kafka.elasticsearchconsumer.ElasticSearchConsumer
 ```
 
-3. To view all the tweets in your Elasticsearch console using GET command.
+3. View all the tweets in your Elasticsearch console using GET command.
 
 ```
 GET /twitter/_search?pretty
@@ -142,6 +142,10 @@ or
 ```
 curl -X GET "localhost:9200/twitter/_search?pretty"
 ```
+
+
+<br>
+<br>
 
 
 ![Tweets stored in Elasticsearch](elastisearch.JPG)
