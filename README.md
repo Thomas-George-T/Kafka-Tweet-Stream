@@ -9,34 +9,51 @@
 <br>
 <p align="center">
 	<a href="#">
-		<img src="https://cdn.svgporn.com/logos/kafka.svg" width="300" />
-    <img src="https://cdn.svgporn.com/logos/twitter.svg" width="175" /> 
+		<img src="https://cdn.svgporn.com/logos/twitter.svg" width="175"  /> 	
+		<img src="https://cdn.svgporn.com/logos/kafka.svg" width="300" hspace="60" />
+    	<img src="https://cdn.svgporn.com/logos/elasticsearch.svg" width ="150" />
 	</a>
 </p>
 <br>
 
-This project aims at streaming Tweets using a high throughput Kafka Producer. To ensure a high throughput, idempotence, safe and compression configurations are enabled with respect to **Kafka 2.0.0 version**.
+This project aims at streaming Tweets using a high throughput Kafka Producer into Elasticsearch using a Idempotent Kafka consumer. To ensure a high throughput, idempotence, safe and compression configurations are enabled with respect to **Kafka 2.0.0 version**.
+
 In the TwitterProducer class, the variable `terms` can be updated to stream tweets about Current affairs. In this example, `coronavirus`, `covid-19`, `pandemic` are being used. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app and getting the OAuth credentials,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
 
 ```java
-static String consumerKey= "";
-static String consumerSecret = "";
-static String token = "";
-static String tokenSecret = "";
+public class config {
+	static String consumerKey= "";
+	static String consumerSecret = "";
+	static String token = "";
+	static String tokenSecret = "";
+}
 ```
 
 To integrate Twitter streaming with Kafka, we use the Horsebird Client which is a Java HTTP client for consuming Twitter's standard streaming API [Learn more](https://github.com/twitter/hbc).
 
+In the ElasticSearchConsumer class, We create a consumer which is subscribed to the `TwitterTopic` which is being used in the TwitterProducer class and the consumer group is `Twitter-Consumer-Group`. Google gson library is being used to parse the tweets since they are consumed in the JSON format. We extract `id_str` and use it to make our consumer idempotent and BulkRequest is used to batch before committing the offsets into Elasticsearch. Set these static variables in `config.java` under the kafka-consumer-elasticsearch folder.
+`config.java` Template:
+
+```java
+public class config {
+	static String hostname = ""; // Use localhost:9200 or Elasticsearch cloud URL
+    static String username = ""; // Required only for Elasticsearch cloud URL
+    static String password = ""; // Required only for Elasticsearch cloud URL
+}
+```
+
 ## Environment
 - Java JDK 1.8
-- Twitter Developer Account
+- [Twitter Developer Account](https://developer.twitter.com/en/apply-for-access)
 - Kafka 2.0.0
 - Zookeeper
 - Windows/Linux
 - Maven
+- Elasticsearch 7.2.0
 
 ## Prerequisites 
 
+Add the 
 Ensure that Zookeeper & Kafka servers are up and running *(Open in separate terminal windows if necessary)*.
 
 Command to start Zookeeper
@@ -51,9 +68,15 @@ Command to start Kafka server
 kafka-server-start.sh config/server.properties
 ```
 
+In this example, we are implementing Elasticsearch on the cloud. [bonsai.io](https://bonsai.io) provides a very good sandbox environment with a 3 node cluster for implementing this. 
+
+> *Personally recommend running Elasticsearch on local machine if and only if free & available RAM >= 5 GB so as to not turn your machine into a room heater*
+
+For the Kafka consumer to commit data into Elasticsearch, Create an index called `twitter` using the PUT command.
+
 ## Installation
 
-After cloning this repo,
+After cloning this repo, Do this for both Kafka Twitter Producer and ElasticSearch consumer
 
 1. Run the maven `clean install` command
 
@@ -61,7 +84,7 @@ After cloning this repo,
 mvn clean install
 ```
 
-Maven will now generate a `target` directory with the jar `Kakfa-Streaming-1.0-shaded.jar`
+Maven will now generate a `target` directory with the jar `Kakfa-Streaming-1.0-shaded.jar` or `kafka-consumer-elasticsearch-1.0-shaded.jar` respectively
 
 2. Move into the `target` directory
 
@@ -71,7 +94,7 @@ cd target
 
 ## Execution
 
-### To execute the TwitterProducer class
+### Executing Twitter Producer 
 
 1. Create a `topic` called TwitterTopic. Always have a replication factor equal or lesser than the number of available brokers. *(One Time activity)*
 
@@ -92,6 +115,34 @@ java -cp Kakfa-Streaming-1.0-shaded.jar com.github.thomas.kafka.TwitterProducer
 ```
 
 4. You should now be able to see the output in your Kafka console consumer terminal.
+
+### Executing  Elasticsearch Kafka Consumer
+
+1. Create an index in Elasticsearch called `twitter` in console or localhost using an PUT command
+
+```
+PUT /twitter
+```
+or 
+```
+curl -X PUT "localhost:9200/twitter?pretty"
+```
+
+2. Execute the ElasticSearchConsumer class from the shaded jar
+
+```
+java -cp kafka-consumer-elasticsearch-1.0-shaded.jar com.github.thomas.kafka.elasticsearchconsumer.ElasticSearchConsumer
+```
+
+3. You should now be able to see the output in your Elasticsearch console using GET command.
+
+```
+GET /twitter
+```
+or 
+```
+curl -X GET "localhost:9200/twitter?pretty"
+```
 
 ## License
 

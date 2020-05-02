@@ -34,10 +34,6 @@ public class ElasticSearchConsumer {
     public static RestHighLevelClient createClient() {
 
         // source from your config file
-        //String hostname = ""; // Use localhost or elasticsearch cloud url
-        //String username = ""; // needed only for elasticsearch cloud url
-        //String password = ""; // needed only for elasticsearch cloud url
-
         // credentials provider help supply username and password
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY,
