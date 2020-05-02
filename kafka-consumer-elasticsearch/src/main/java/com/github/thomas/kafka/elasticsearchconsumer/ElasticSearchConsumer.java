@@ -68,6 +68,8 @@ public class ElasticSearchConsumer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        // Disabling Auto commit and using the manual commit strategy to ensure no data is lost
         properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // disable auto commit of offsets
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "100"); // disable auto commit of offsets
 
@@ -102,6 +104,7 @@ public class ElasticSearchConsumer {
             Integer recordCount = records.count();
             logger.info("Received " + recordCount + " records");
 
+            // Bulk request is to enable batching
             BulkRequest bulkRequest = new BulkRequest();
 
             for (ConsumerRecord<String, String> record : records) {
@@ -116,13 +119,14 @@ public class ElasticSearchConsumer {
                             .source(record.value(), XContentType.JSON)
                             .id(id); // this is to make our consumer idempotent
 
-                    bulkRequest.add(indexRequest); // we add to our bulk request (takes no time)
+                    bulkRequest.add(indexRequest); // we add to our bulk request (takes no time) for batching
                 } catch (NullPointerException e) {
-                    logger.warn("skipping bad data: " + record.value());
+                    logger.warn("skipping bad data: Missing id_str" + record.value());
                 }
 
             }
 
+            // Manual commit strategy
             if (recordCount > 0) {
                 BulkResponse bulkItemResponses = client.bulk(bulkRequest, RequestOptions.DEFAULT);
                 logger.info("Committing offsets...");

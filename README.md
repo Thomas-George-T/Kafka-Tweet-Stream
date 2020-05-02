@@ -16,7 +16,7 @@
 <br>
 
 This project aims at streaming Tweets using a high throughput Kafka Producer. To ensure a high throughput, idempotence, safe and compression configurations are enabled with respect to **Kafka 2.0.0 version**.
-In the TwitterProducer class, the variable `terms` can be updated to stream tweets about Current affairs. In this example, `coronavirus, covid-19, pandemic` are being used. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app and getting the OAuth credentials,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
+In the TwitterProducer class, the variable `terms` can be updated to stream tweets about Current affairs. In this example, `coronavirus`, `covid-19`, `pandemic` are being used. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app and getting the OAuth credentials,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
 
 ```java
 static String consumerKey= "";
@@ -30,14 +30,14 @@ To integrate Twitter streaming with Kafka, we use the Horsebird Client which is 
 ## Environment
 - Java JDK 1.8
 - Twitter Developer Account
-- Kafka 2.12
+- Kafka 2.0.0
 - Zookeeper
 - Windows/Linux
 - Maven
 
 ## Prerequisites 
 
-Ensure that Zookeeper & Kafka servers are up and running *( Open in separate terminal windows if necessary )*.
+Ensure that Zookeeper & Kafka servers are up and running *(Open in separate terminal windows if necessary)*.
 
 Command to start Zookeeper
 
@@ -73,7 +73,7 @@ cd target
 
 ### To execute the TwitterProducer class
 
-1. Create a `topic` called TwitterTopic. Always have a replication factor equal or lesser than the number of available brokers.
+1. Create a `topic` called TwitterTopic. Always have a replication factor equal or lesser than the number of available brokers. *(One Time activity)*
 
 ```
 kafka-topics --bootstrap-server localhost:9092 --topic TwitterTopic --create --partitions 3 --replication-factor 1
