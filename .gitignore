@@ -2,12 +2,12 @@
 *.classpath
 *.project
 *.settings
-target/
+**/target/
 bin/
 test/
 RemoteSystemsTempFiles/
 *.recommenders
 *.metadata
-*.iml
+**/*.iml
 *.idea
 **/config.java

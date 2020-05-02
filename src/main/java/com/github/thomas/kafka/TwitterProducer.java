@@ -26,7 +26,7 @@ public class TwitterProducer {
 
     Logger logger = LoggerFactory.getLogger(TwitterProducer.class.getName());
 
-    List<String> terms = Lists.newArrayList("covid-19", "coronavirus", "WHO", "pandemic");
+    List<String> terms = Lists.newArrayList("covid-19", "coronavirus", "pandemic");
 
     public TwitterProducer() {}
 
