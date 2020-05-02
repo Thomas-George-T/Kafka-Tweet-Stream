@@ -35,8 +35,8 @@ In the ElasticSearchConsumer class, We create a consumer which is subscribed to 
 ```java
 public class config {
     static String hostname = ""; // Use localhost:9200 or Elasticsearch cloud URL
-    static String username = ""; // Required only for Elasticsearch cloud URL
-    static String password = ""; // Required only for Elasticsearch cloud URL
+    static String username = ""; // Required only for Elasticsearch cloud
+    static String password = ""; // Required only for Elasticsearch cloud
 }
 ```
 
