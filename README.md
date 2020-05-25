@@ -30,7 +30,7 @@ public class config {
 }
 ```
 
-To integrate Twitter streaming with Kafka, we use the Horsebird Client which is a Java HTTP client for consuming Twitter's standard streaming API ([Learn more](https://github.com/twitter/hbc)).
+To integrate Twitter streaming with Kafka, we use the Horsebird Client which is a Java HTTP client for consuming Twitter's standard streaming API.
 
 In the ElasticSearchConsumer class, We create a consumer which is subscribed to the `TwitterTopic` which is being used in the TwitterProducer class and the consumer group is `Twitter-Consumer-Group`. Google gson library is being used to parse the tweets since they are consumed in the JSON format. We extract `id_str` and use it to make our consumer idempotent and BulkRequest is used to batch before committing the offsets into Elasticsearch. After setting up ElasticSearch either on premise or on the cloud. Set `hostname`,`username`,`password` as static variables in `config.java` under the kafka-consumer-elasticsearch folder.
 Follow the below template for `config.java`:
@@ -158,6 +158,7 @@ curl -X GET "localhost:9200/twitter/_search?pretty"
 
 This repository is under Apache License 2.0 - see [License](LICENSE.md) for more details
 
-## Acknowledgement
+## Resources
 
-This was inspired by Stephane Maarek. Check out his [Apache Kafka Series course](https://www.udemy.com/course/apache-kafka/) 
+- Inspired by Stephane Maarek. Check out his [Apache Kafka Series course](https://www.udemy.com/course/apache-kafka/)
+- [Twitter Horsebird Client](https://github.com/twitter/hbc)
