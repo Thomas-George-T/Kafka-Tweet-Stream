@@ -3,7 +3,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Thomas-George-T/Kafka-Twitter-Streaming?style=plastic)
 
 
-# Kafka Twitter Streaming into Elasticsearch
+# Covid19 Tweet Data Collection
 <br>
 <p align="center">
 	<a href="#">
