@@ -15,7 +15,7 @@
 <br>
 
 ## Overview
-This project aims at streaming real time Tweets of current affairs using a high throughput Kafka Producer into Elasticsearch using a Idempotent Kafka consumer. In this example, `coronavirus`, `covid-19`, `pandemic` are being used. Use this to aggregate data into elasticsearch and use it for further analytics.
+Stream real time Tweets of current affairs like covid-19 using Kafka 2.0.0 high throughput producer & consumer into Elasticsearch using safe, idempotent and compression configurations. In this example, keywords like `coronavirus`, `covid-19`, `pandemic` are being used, Change them according to your requirements. Elasticsearch stores the tweets as JSON. Aggregate this data and use the data collected for further analytics.
 
 ## Breakdown
 To ensure a high throughput, idempotence, safe and compression configurations are enabled with respect to **Kafka 2.0.0 version**.
