@@ -20,7 +20,7 @@ Stream real time Tweets of current affairs like covid-19 using Kafka 2.0.0 high 
 
 ## Breakdown
 To ensure a high throughput, idempotence, safe and compression configurations are enabled with respect to **Kafka 2.0.0 version**.
-In the TwitterProducer class, the variable `terms` can be updated to stream tweets about Current affairs. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app and getting the OAuth credentials,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`
+In the TwitterProducer class, the variable `terms` can be updated to stream tweets about Current affairs. The prerequisite to running this project is to procure Twitter API credentials. To do this, sign up for twitter Developer account [here](https://developer.twitter.com/en/apply-for-access). After creating the app and getting the OAuth credentials,`consumerKey`,`consumerSecret`,`token`,`tokenSecret` are to be used to set the variables in `config.java`. Set these Strings to be static. Follow the below template for `config.java`:
 
 ```java
 public class config {
