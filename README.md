@@ -1,9 +1,7 @@
-![GitHub](https://img.shields.io/github/license/Thomas-George-T/Kafka-Twitter-Streaming?style=flat-square)
-![GitHub top language](https://img.shields.io/github/languages/top/Thomas-George-T/Kafka-Twitter-Streaming?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/Thomas-George-T/Kafka-Twitter-Streaming?style=flat-square)
-<!--
-[![HitCount](http://hits.dwyl.com/Thomas-George-T/Covid19-Tweet-Data-Collection.svg)](http://hits.dwyl.com/Thomas-George-T/Covid19-Tweet-Data-Collection)
--->
+![GitHub](https://img.shields.io/github/license/Thomas-George-T/Kafka-Twitter-Streaming?style=flat)
+![GitHub top language](https://img.shields.io/github/languages/top/Thomas-George-T/Kafka-Twitter-Streaming?style=flat)
+![GitHub last commit](https://img.shields.io/github/last-commit/Thomas-George-T/Kafka-Twitter-Streaming?style=flat)
+![ViewCount](https://views.whatilearened.today/views/github/Thomas-George-T/Covid19-Tweet-Data-Collection.svg?cache=remove)
 
 # Covid19 Tweet Data Collection
 <br>
